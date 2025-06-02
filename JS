@@ -1,0 +1,90 @@
+function CentroCard({ nome, telefone, endereco }) {
+  return (
+    <div className="card">
+      <div className="icon">📍</div>
+      <h3>{nome}</h3>
+      <p>📞 {telefone}</p>
+      <p>📌 {endereco}</p>
+    </div>
+  );
+}
+
+function App() {
+  const centros = {
+    "São Paulo": [
+      {
+        nome: "Centro de Hemoterapia de São Paulo",
+        telefone: "(11) 3333-4444",
+        endereco: "Rua das Flores, 123, Centro, São Paulo, SP",
+      },
+      {
+        nome: "Instituto de Hematologia e Hemoterapia",
+        telefone: "(11) 2222-5555",
+        endereco: "Av. Paulista, 456, Bela Vista, São Paulo, SP",
+      },
+    ],
+    "Rio de Janeiro": [
+      {
+        nome: "Hemocentro do Rio de Janeiro",
+        telefone: "(21) 2222-3333",
+        endereco: "Rua da Lapa, 789, Centro, Rio de Janeiro, RJ",
+      },
+      {
+        nome: "Banco de Sangue do Rio",
+        telefone: "(21) 4444-5555",
+        endereco: "Av. Atlântica, 101, Copacabana, Rio de Janeiro, RJ",
+      },
+    ],
+    "Minas Gerais": [
+      {
+        nome: "Hemominas",
+        telefone: "(31) 3333-6666",
+        endereco: "Rua da Bahia, 202, Centro, Belo Horizonte, MG",
+      },
+      {
+        nome: "Centro de Hematologia de Minas Gerais",
+        telefone: "(31) 2222-7777",
+        endereco: "Av. Afonso Pena, 303, Funcionários, Belo Horizonte, MG",
+      },
+    ],
+  };
+
+  return (
+    <div className="container">
+      <header>
+        <div className="logo">🩸 Doar Sangue</div>
+        <nav>
+          <a href="#">Início</a>
+          <a href="#">Como Doar</a>
+          <a className="active" href="#">Onde Doar</a>
+          <a href="#">Quem Pode Doar</a>
+          <a href="#">Mitos e Verdades</a>
+        </nav>
+        <div className="user-icons">🔔 👩‍🦰</div>
+      </header>
+
+      <main>
+        <h1>Centros de Doação de Sangue</h1>
+        <input type="text" placeholder="Buscar por estado ou nome do centro" className="search" />
+
+        {Object.entries(centros).map(([estado, unidades]) => (
+          <div key={estado}>
+            <h2>{estado}</h2>
+            <div className="cards-row">
+              {unidades.map((centro, idx) => (
+                <CentroCard key={idx} {...centro} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </main>
+
+      <footer>
+        <p>© 2024 Doar Sangue Brasil. Todos os direitos reservados.</p>
+        <p>Sua doação pode salvar vidas. Encontre o hemocentro mais próximo.</p>
+      </footer>
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
